@@ -10,7 +10,7 @@
       <strong class="toggle-mobile">@cdprado.dev</strong>
       <a href="{{ route('guest.home') }}">Home</a>
       <a href="{{ route('blog.home') }}">Blog</a>
-      <a href="" class="link link--secondary"><i class="fa-solid fa-circle-user"></i> Login</a>
+      <a href="{{ route('auth.login') }}" class="link link--secondary"><i class="fa-solid fa-circle-user"></i> Login</a>
       <a href="{{ route('guest.orcamento') }}" class="link"><i class="fa-solid fa-bolt"></i> Orçamento</a>
     </div>
   </div>

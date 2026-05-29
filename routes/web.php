@@ -20,7 +20,7 @@ Route::get('/orcamento')->name("guest.orcamento");
 
 Route::middleware(['guest'])->group(function () {
     Route::view('/cadastrar-empresa', 'guest.new-tenant');
-    Route::view('/login', 'auth.login');
+    Route::view('/login', 'auth.login')->name("auth.login");
     Route::view('/esqueci-senha', 'auth.forgot-password');
     Route::view('/criar-senha', 'auth.create-password');
 });

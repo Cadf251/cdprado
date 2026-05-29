@@ -26,16 +26,6 @@ class LoginForm extends Component
     if (!$user) {
       return $this->fail();
     }
-  
-    // $tenants = $user->tenants;
-
-    // if ($tenants->isEmpty()) {
-    //   $this->fail("Você não tem acesso a nenhuma empresa.");
-    // }
-
-    // // if ($tenants->count() === 1) {
-    //   // Redireciona direto
-    // // }
 
     $this->redirect('/empresas');
   }
@@ -47,6 +37,8 @@ class LoginForm extends Component
 
   public function render()
   {
+    // dd(view()->exists('components.auth.⚡login-form'));
+
     return view('components.auth.⚡login-form');
   }
 }
