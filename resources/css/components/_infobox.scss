@@ -1,0 +1,50 @@
+@use "../base/util" as *;
+
+.info-box {
+  box-sizing: border-box;
+  width: 35%;
+  min-width: 200px;
+  gap: 16px;
+  display: grid;
+  border-radius: 4px;
+  padding: 32px;
+  justify-self: center;
+  margin: 16px 0 18px 0;
+  transition: all .5s ease;
+  
+  * {
+    margin: 0;
+  }
+
+  .titulo {
+    text-align: center;
+  }
+
+  &__content {
+    padding-top: 16px;
+    border-top: 2.5px solid var(--border);
+  }
+
+  &--silver {
+    --color: var(--color-silver-soft);
+    --bg: var(--color-silver);
+    --border: var(--color-neutral-400);
+  }
+
+  &--red {
+    --color: var(--color-neutral-000);
+    --bg: var(--color-red-soft);
+    --border: var(--color-red)
+  }
+
+  &--yellow {
+    --color: var(--color-neutral-000);
+    --bg: var(--color-yellow-soft);
+    --border: var(--color-yellow);
+  }
+
+  color: var(--color);
+  background-color: var(--bg);
+  border: solid var(--border);
+  border-width: 3px 3px 6px 3px !important;
+}

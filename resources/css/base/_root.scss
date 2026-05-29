@@ -1,0 +1,130 @@
+@use "util" as *;
+
+:root {
+  /* Tokens de opacidade */
+  --op-surface: 80%;
+  --op-overlay: 75%;
+  --op-mid: 50%;
+  --op-mid-soft: 35%;
+  --op-soft: 25%;
+  --op-soft-ghost: 20%;
+  --op-ghost: 10%;
+
+  @mixin color($name, $value) {
+    --color-#{$name}: $value;
+  }
+
+  @mixin mix($color, $op) {
+    --color-#{$color}-#{$op}: color-mix(in srgb, var(--color-#{$color}) var(--op-#{$op}), #0000);
+  }
+
+  /* Neutros */
+  --color-neutral-1000: #fff;
+  --color-neutral-900: #f2f2f2;
+  --color-neutral-800: #e4e4e4;
+  --color-neutral-700: #cbcbcb;
+  --color-neutral-500: #525252;
+  --color-neutral-400: #444;
+  --color-neutral-200: #282828;
+  --color-neutral-100: #1a1a1a;
+  --color-neutral-000: #000;
+
+  @include mix("neutral-1000", "surface");
+  @include mix("neutral-700", "soft");
+  @include mix("neutral-500", "soft");
+  @include mix("neutral-200", "overlay");
+  @include mix("neutral-200", "mid");
+  @include mix("neutral-100", "mid");
+  @include mix("neutral-000", "surface");
+  @include mix("neutral-000", "overlay");
+  @include mix("neutral-000", "mid");
+  @include mix("neutral-000", "ghost");
+  @include mix("neutral-000", "soft");
+
+  /* Principal */
+  --color-main: #0ebcc9;
+  --color-main-dark: #123237;
+
+  @include mix("main", "surface");
+  @include mix("main", "overlay");
+  @include mix("main", "mid");
+  @include mix("main", "mid-soft");
+  @include mix("main", "soft");
+  @include mix("main", "soft-ghost");
+
+  /* Complementares */
+  --color-seablue: #1496e6;
+  --color-petroleo: #114960;
+
+  /* Cores */
+  --color-green: #0EC92A;
+  --color-green-soft: #A5FFB2;
+
+  --color-blue: var(--color-main);
+  --color-blue-soft: #B9FAFE;
+  
+  --color-red: #FE2C59;
+  --color-red-soft: #FFBCC5;
+
+  --color-silver: #747F8A;
+  --color-silver-soft: #e0e5ea;
+
+  --color-yellow: #b8b60b;
+  --color-yellow-soft: #fcfaa9;
+
+  /* Fontes */
+  --font-primary: "agenda", "verdana", "system-ui";
+
+  /* Components (Guest-based) */
+  --nav-color: var(--color-neutral-200);
+  --bg-color: var(--color-neutral-100);
+  --text-color: var(--color-neutral-1000);
+  --nav-bg: var(--color-neutral-400);
+
+  /* Sizes */
+  --font-size: clamp(16px, 1.4vw, 26px);
+
+  --gap-big: 128px;
+  --gap-section: 64px;
+  --gap-content: 32px;
+  --gap-component: 24px;
+  --gap-paragraph: 16px;
+
+  --main-gap: 128px;
+  --main-min-height: 98vh;
+  --main-padding: calc(80px + 5%) 5% 5% 5%;
+
+  --section-padding: 10% 7%;
+
+  --card-xl-gap: 64px;
+  --card-md-gap: 16px;
+  --card-md-gap: 8px;
+  
+  --card-md-radius: 16px;
+  --card-sm-radius: 8px;
+
+  --card-bg-padding: 32px 28px;
+  --card-md-padding: 28px;
+
+  --card-bg-border: 7px;
+  --card-md-border: 5px;
+  --card-sm-border: 3px;
+}
+
+[data-context="app"] {
+  --font-size: clamp(13px, 1.2vw, 18px);
+}
+
+@include mobile {
+  :root {
+    --font-size: 20px;
+
+    --main-gap: 64px;
+    --main-padding: calc(10% + 75px) 16px 10% 16px;
+
+    --card-xl-gap: 32px;
+  
+    --card-bg-padding: 16px;
+    --card-md-padding: 16px;
+  }
+}

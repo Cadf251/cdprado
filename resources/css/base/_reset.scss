@@ -1,0 +1,44 @@
+html {
+  font-family: var(--font-primary);
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
+
+body {
+  background: var(--bg-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &*::selection {
+    color: var(--color-main);
+    background-color: var(--color-main-dark);
+    text-shadow: none;
+  }
+}
+
+a,
+br,
+button,
+input,
+img {
+  user-select: none;
+}
+
+a,
+a:visited,
+a:link {
+  text-decoration: none;
+}
+
+input,
+button {
+  border: none;
+}
+
+[x-cloak] {
+  display: none;
+}

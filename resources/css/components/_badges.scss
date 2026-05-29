@@ -1,0 +1,46 @@
+
+.small-badge {
+  &, &--silver {
+    --color: var(--color-silver);
+    --bg: var(--color-silver-soft);
+  }
+
+  &--green {
+    --color: var(--color-green);
+    --bg: var(--color-green-soft);
+  }
+
+  &--blue {
+    --color: var(--color-blue);
+    --bg: var(--color-blue-soft);
+  }
+
+  &--red {
+    --color: var(--color-red);
+    --bg: var(--color-red-soft);
+  }
+
+  &--yellow {
+    --color: var(--color-yellow);
+    --bg: var(--color-yellow-soft);
+  }
+
+  &--gray {
+    --color: var(--color-neutral-500);
+    --bg: var(--color-neutral-700);
+  }
+
+  color: var(--color);
+  background-color: var(--bg);
+  font-size: 0.8em;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+
+  &[title]:not([title=""]),
+  &[data-tooltip-applied] {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

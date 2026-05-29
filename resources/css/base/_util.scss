@@ -1,0 +1,88 @@
+$path: "../img/";
+
+// |-------------------|
+// |--- ALINHAMENTO ---|
+// |-------------------|
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-y {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-x {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+// ESPAÇAMENTO
+@mixin w($input: 12) {
+  width: calc(($input / 12) * 100%);
+}
+
+// LAYOUT
+@mixin section($pagePadding: 5% 10%) {
+  padding: $pagePadding;
+  box-sizing: border-box;
+  @include flex-column;
+  text-align: center;
+  gap: 64px;
+  width: 100%;
+}
+
+// COMPONENTES
+@mixin fade($type) {
+  @if $type=="hide" {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+  }
+
+  @else if $type=="show" {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s;
+  }
+}
+
+// BREAK POINTS
+$deskL: 1247px;
+$tablet: 1197px;
+$mobile: 768px;
+
+@mixin largeDesk {
+  @media only screen and (max-width: $deskL) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: $mobile) {
+    @content;
+  }
+}

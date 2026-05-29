@@ -1,0 +1,33 @@
+.titulo{
+  font-size: 2em;
+  font-weight: 600;
+
+  &--2 {
+    font-size: 1.75em;
+  }
+
+  &--3 {
+    font-size: 1.5em;
+  }
+
+  &--4 {
+    font-size: 1.25em;
+  }
+}
+
+p, label, input {
+  font-weight: 300;
+}
+
+strong, b {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.descricao {
+  font-size: 1.15rem;
+}
+
+.destaque {
+  color: var(--color-main) !important;
+}

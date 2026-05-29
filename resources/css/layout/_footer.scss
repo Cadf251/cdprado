@@ -1,0 +1,18 @@
+footer {
+  width: 100%;
+  height: auto;
+  padding: 24px;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-neutral-200);
+  color: var(--color-neutral-1000) !important;
+  font-weight: lighter;
+  display: flex;
+  gap: 16px;
+  
+  a {
+    color: var(--color-main);
+  }
+}

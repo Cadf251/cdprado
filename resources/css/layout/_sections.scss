@@ -1,0 +1,56 @@
+@use "../base/util" as *;
+
+section {
+  gap: var(--gap-section);
+  padding: var(--section-padding);
+}
+
+.section--center {
+  align-items: center;
+
+  &>.text-container,
+  &>.titulo {
+    text-align: center;
+  }
+}
+
+.grid-container--2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-container--3xn {
+  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.task-header {
+  @include flex_between;
+  padding: 16px 0;
+  width: 100%;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__description {
+      color: var(--gray-dark);
+      font-size: 0.9em;
+    }
+  }
+
+  &__buttons {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+  }
+}
+
+@media (max-width: $mobile) {
+  section,
+  .impacto {
+    padding: clamp(64px, 10vh, 72px) 16px !important;
+  }
+}

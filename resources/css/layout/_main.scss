@@ -1,0 +1,153 @@
+@use "../base/util" as *;
+
+// Lembre-se que esse arquivo será compartilhado com os dois projetos
+main, section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main {
+  // | ---------------|
+  // | --- BASICS --- |
+  // | ---------------|
+
+  // Spacing
+  padding: var(--main-padding);
+  min-height: var(--main-min-height);
+  gap: var(--main-gap);
+  justify-content: center;
+
+  // Child components
+  &__content {
+    @include w(8);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-content);
+
+    text-align: left;
+  }
+
+  // Mockups of desktop and phone used in HOME
+  &__mockup {
+    width: 50%;
+    position: relative;
+  }
+
+  &__desktop {
+    width: 100%;
+  }
+
+  &__phone {
+    position: absolute;
+    width: 20%;
+    bottom: -20px;
+    right: 0;
+  }
+
+  &__desktop,
+  &__phone {
+    transition: all .5s ease;
+
+    &:hover {
+      transform: scale(1.025);
+    }
+  }
+
+  // | -------------------|
+  // | --- VARIATIONS --- |
+  // | -------------------|
+  &--guest {
+    gap: 0;
+    flex-direction: row;
+    align-items: center;
+
+    .main__content {
+      width: 50%;
+    }
+  }
+
+  // Used in ORÇAMENTO page
+  &--utility {
+    background:
+      linear-gradient(
+        var(--color-neutral-000-overlay),
+        var(--color-neutral-000-overlay)
+      ),
+      linear-gradient(
+        transparent 0,
+        transparent 90%,
+        var(--color-neutral-000)
+      ),
+      url(../img/main-bg.webp);
+  }
+}
+
+@include mobile {
+  .main {
+    justify-content: center;
+
+    &__content {
+      width: 100%;
+    }
+
+    &--guest {
+      flex-direction: column !important;
+      gap: var(--main-gap);
+
+      &>* {
+        width: 100% !important;
+      }
+    }
+  }
+}
+//   &--guest, &--auth, &--middleware {
+//     padding: 5%;
+//     align-items: center;
+//     justify-content: center;
+//     background-position: center;
+//   }
+
+//   &--guest, &--auth {
+//     background:
+//       linear-gradient(var(--color-neutral-000-overlay)),
+//       url("#{$path}main-bg.webp");
+
+//     // Textos diretos tem cor personalizada
+//     .titulo, p {
+//       color: var(--color-neutral-1000);
+//     }
+//   }
+
+//   &--app, &--middleware {
+//     background: var(--color-neutral-900);
+//   }
+
+//   &--app {
+//     flex-direction: column;
+//     padding: 32px;
+//   }
+
+//   &--extendido {
+//     margin-left: 15%;
+//   }
+
+//   transition: 
+//     width 0.5s ease, 
+//     padding 0.5s ease, 
+//     margin 0.5s ease;
+
+//   & > * {
+//     animation: show-me .5s;
+//   }
+// }
+
+// @keyframes show-me{
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }

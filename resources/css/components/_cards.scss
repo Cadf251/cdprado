@@ -1,0 +1,327 @@
+@use "../base/util" as *;
+
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  transition: all .5s ease;
+
+  border-radius: var(--card-md-radius);
+  padding: var(--card-md-padding);
+  gap: var(--card-md-gap);
+
+  i {
+    font-size: 3rem;
+  }
+
+  // | --------------- |
+  // | ---- GUEST ---- |
+  // | --------------- |
+
+  /* Used in HOME */
+  &--digital {
+    align-items: center;
+    border: var(--color-main-mid) var(--card-md-border) solid;
+
+    &:hover {
+      background-color: var(--color-main-soft-ghost);
+      border-color: var(--color-main);
+    }
+
+    &::after {
+      height: 5px;
+      top: -5px;
+      left: 50% !important;
+      transform: translateX(-50%);
+
+      &:hover {
+        left: 50% !important;
+      }
+    }
+
+    i {
+      color: var(--color-main);
+      filter: drop-shadow(0 0 15px color-mix(in srgb, var(--color-main), transparent 1%));
+    }
+  }
+
+  &--widget {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    padding: var(--card-bg-padding);
+    border: var(--card-bg-border) solid var(--color-main);
+    border-radius: var(--card-sm-radius);
+
+    background:
+      linear-gradient(var(--color-neutral-000-overlay),
+        var(--color-neutral-000-overlay)),
+
+      /* --bg é definido no html */
+      var(--bg);
+
+    img {
+      width: 20%
+    }
+
+    &:hover {
+      transform: scale(1.005);
+    }
+  }
+
+  &--digital,
+  &--widget {
+    box-shadow:
+      0 0 10px var(--color-main-mid),
+      0 0 20px var(--color-main-soft-ghost);
+  }
+
+  /* Used in FAQ */
+  &--solid {
+    display: block;
+    background-color: var(--color-main);
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.25);
+
+    * {
+      color: var(--color-main-dark);
+      text-align: left !important;
+    }
+
+    p {
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all .5s ease;
+
+      &.is-loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // WHITE CARDS
+  &--garantia, &--post, &--app, &--object {
+    background-color: var(--color-neutral-1000);
+  }
+
+  &--garantia {
+    text-align: left;
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 50%;
+      object-position: center;
+      background: var(--color-neutral-800);
+      padding: 8px;
+    }
+
+    * {
+      color: var(--color-neutral-000);
+    }
+  }
+
+  &--app, &--post {
+    box-shadow: 0px 0px 15px var(--color-neutral-000-soft);
+  }
+
+  // Used in APP for objects info (users, teams, leads)
+  &--object {
+    width: 100%;
+    padding: 20px 24px;
+    @include flex-between;
+    gap: var(--card-xl-gap);
+    margin-bottom: 2px;
+    box-shadow: 0px 4px 10px var(--color-neutral-000-ghost);
+  }
+}
+
+// Animated shinning BAR effect
+.card--info, .card--digital {
+  &::after {
+    content: "";
+    transition: all .5s ease;
+    position: absolute;
+    background-color: var(--color-main);
+    top: -3px;
+    left: 10%;
+    width: 75px;
+    height: 3px;
+    border-radius: 2px;
+    animation: luminate-bar 2s infinite;
+    box-shadow:
+      var(--color-main) 0px 0px 8px,
+      var(--color-main) 0px 5px 8px,
+      var(--color-main) 0px 10px 16px,
+      var(--color-main) 0px 20px 30px;
+  }
+
+  &:hover {
+    background-color: var(--color-main-soft-ghost);
+
+    &::after {
+      width: 90px;
+      top: -3.5px;
+      height: 4px;
+      left: calc(10% - (15px / 2));
+    }
+  }
+}
+
+@keyframes luminate-bar {
+  0% {
+    box-shadow:
+      var(--color-main) 0px 0px 8px,
+      var(--color-main) 0px 5px 8px,
+      var(--color-main) 0px 10px 16px,
+      var(--color-main) 0px 20px 30px;
+  }
+
+  50% {
+    box-shadow:
+      var(--color-main) 0px 0px 8px 1px,
+      var(--color-main) 0px 5px 8px 1px,
+      var(--color-main) 0px 10px 16px 1px,
+      var(--color-main) 0px 20px 30px 1px;
+  }
+
+  100% {
+    box-shadow:
+      var(--color-main) 0px 0px 8px,
+      var(--color-main) 0px 5px 8px,
+      var(--color-main) 0px 10px 16px,
+      var(--color-main) 0px 20px 30px;
+  }
+}
+
+.blog-topics {
+  width: 100%;
+  padding: 12px 24px;
+  display: flex;
+  background-color: var(--color-main-soft-ghost);
+  border-radius: 16px;
+  transition: all .5s ease;
+  position: relative;
+  border: 3px solid var(--color-main-soft-ghost);
+
+  a,
+  a:link,
+  a:visited {
+    color: var(--color-neutral-1000);
+    padding: 8px 16px;
+    transition: all .5s;
+
+    &:hover {
+      color: var(--color-main);
+      background-color: var(--color-neutral-000-soft);
+    }
+  }
+}
+
+@include mobile {
+  .card--garantia {
+    &:hover,
+    &:focus {
+      background-color: var(--color-neutral-700);
+    }
+
+    img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  .blog-topics {
+    flex-direction: column;
+
+    a {
+      border-bottom: 1px solid var(--color-main);
+    }
+  }
+
+  .card--post {
+    max-width: 100%;
+  }
+}
+
+.card--glass {
+  background-color: var(--color-neutral-100-mid);
+  border: var(--color-neutral-200) 2px solid;
+  border-radius: 8px;
+  padding: 2em;
+  color: var(--color-neutral-1000) !important;
+}
+
+// @todo refatorar
+.card__header {
+  gap: 16px;
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+
+  &__info {
+    display: grid;
+    gap: 8px;
+
+    .subinfo {
+      display: inline-flex;
+      gap: 8px;
+      font-size: 0.9em;
+      color: var(--color-neutral-500);
+    }
+  }
+}
+
+// @todo entender
+.card__inline-items {
+  gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Quando o container pai está carregando */
+.is-loading {
+  pointer-events: none;
+  /* Impede cliques duplos durante o load */
+  user-select: none;
+  position: relative;
+  border-color: transparent !important;
+}
+
+/* Esconde ou suaviza o conteúdo original para o brilho aparecer */
+.is-loading>* {
+  opacity: 0.5;
+  filter: blur(1px);
+  /* Opcional: dá um ar de "carregando dados" */
+  transition: opacity 0.3s ease;
+}
+
+/* O efeito de brilho */
+.is-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}

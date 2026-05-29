@@ -1,0 +1,45 @@
+@use "../base/util" as *;
+
+.table {
+  background: var(--color-neutral-1000);
+  box-shadow: 0 4px 10px #0004;
+  padding: 20px 25px;
+  border-radius: 8px;
+  gap: 16px;
+  margin-top: 16px;
+  width: 100%;
+  box-sizing: border-box;
+
+  .titulo {
+    text-align: center;
+    margin: 0;
+  }
+
+  table {
+    border-spacing: 0 16px;
+    width: 100%;
+  }
+
+  th {
+    font-size: 1.1em;
+    text-align: left;
+  }
+
+  td, th {
+    margin: 8px 0;
+  }
+
+  td .input {
+    padding: 6px 8px !important;
+  }
+
+  .cell-centered {
+    text-align: center;
+  }
+
+  .cell-aligned {
+    display: inline-flex;
+    align-items: center;
+    gap: 0 8px;
+  }
+}
