@@ -10,10 +10,10 @@ export default defineConfig({
         }),
     ],
     server: {
-        host: 'crm.local', // O seu Virtual Host aqui
+        host: 'cdprado.local', // O seu Virtual Host aqui
         cors: true,
         hmr: {
-            host: 'crm.local',
+            host: 'cdprado.local',
         },
     },
 });

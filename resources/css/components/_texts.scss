@@ -1,4 +1,4 @@
-.titulo{
+.titulo {
   font-size: 2em;
   font-weight: 600;
 
@@ -15,11 +15,14 @@
   }
 }
 
-p, label, input {
+p,
+label,
+input {
   font-weight: 300;
 }
 
-strong, b {
+strong,
+b {
   font-weight: 600;
   font-size: 1.2em;
 }
@@ -30,4 +33,8 @@ strong, b {
 
 .destaque {
   color: var(--color-main) !important;
+}
+
+.link {
+  color: var(--color-main);
 }

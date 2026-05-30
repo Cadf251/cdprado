@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TenantController;
@@ -21,6 +22,7 @@ Route::get('/orcamento')->name("guest.orcamento");
 Route::middleware(['guest'])->group(function () {
     Route::view('/cadastrar-empresa', 'guest.new-tenant');
     Route::view('/login', 'auth.login')->name("auth.login");
+    Route::post('/login', [LoginController::class, 'tryToLogin'])->name('auth.login');
     Route::view('/esqueci-senha', 'auth.forgot-password');
     Route::view('/criar-senha', 'auth.create-password');
 });
@@ -29,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/dashboard', 'app.dashboard');
     Route::get('/perfil', [UserController::class, "authProfile"]);
 
-    Route::get('/empresas', [TenantController::class, "index"]);
+    Route::get('/empresas', [TenantController::class, "index"])->name("empresas");
     Route::get('/empresas/selecionar/{id}', [TenantController::class, "select"]);
 
     Route::get("/projetos", [ProjectController::class, "index"]);

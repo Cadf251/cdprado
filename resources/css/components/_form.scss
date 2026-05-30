@@ -1,10 +1,218 @@
 @use "../base/util" as *;
 
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-main-soft-ghost);
+  min-height: 70vh;
+  border-radius: 16px;
+}
+
+.form-header {
+  width: 50%;
+  padding: 3%;
+  text-align: center;
+  box-sizing: border-box;
+  gap: auto;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    font-size: 1.15rem;
+  }
+}
+
+.step-container {
+  width: 50%;
+  padding: 3%;
+  box-sizing: border-box;
+  background-color: #282828;
+  height: stretch;
+
+  .input {
+    color: var(--color-neutral-1000);
+    background-color: var(--color-neutral-400);
+  }
+
+  label {
+    font-weight: bold;
+    font-size: 1.2rem;
+
+    &:hover {
+      background-color: var(--color-neutral-000-soft);
+      border-radius: 4px;
+    }
+  }
+}
+
+.step-wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10% 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.form-step {
+  /* Em vez de display none, usamos visibilidade e altura zero */
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transform: translateY(10px);
+  /* Começa levemente abaixo */
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    height 0s 0.4s;
+  /* Delay na altura para não sumir antes da opacidade */
+}
+
+.form-step.is-visible {
+  height: auto;
+  pointer-events: all;
+  user-select: auto;
+  opacity: 1;
+  transform: translateY(0);
+  display: grid;
+  /* Mantém sua estrutura de grid */
+  gap: 32px;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+
+.button-wrapper {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  .button {
+    font-size: 1.1rem !important;
+  }
+}
+
+.password-toggle {
+  position: relative;
+
+  i {
+    position: absolute;
+    right: 8px;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+}
+
+.barra {
+  width: 100%;
+  height: 30px;
+  background-color: var(--color-neutral-100);
+  position: absolute;
+  top: 0;
+
+  .progresso {
+    position: absolute;
+    width: calc(1/7) * 100%;
+    background-color: var(--color-main);
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 22px;
+    height: 32px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    transition: width 1s ease;
+  }
+}
+
+.checkbox-item,
+.radio-item {
+  text-align: left;
+  display: flex;
+  padding: 1.5px 4px;
+  gap: 12px;
+  transition: background 0.4s ease;
+
+  &:hover {
+    background-color: var(--color-neutral-000-soft);
+    border-radius: 4px;
+  }
+}
+
+/* Feedback de Erro */
+.is-not-valid {
+  border-color: var(--color-red) !important;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
+  animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+/* Feedback de Sucesso */
+.is-valid {
+  border-color: var(--color-main) !important;
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+/* Animação de tremor para o erro */
+@keyframes shake {
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* Melhorando o Radio/Checkbox quando der erro */
+label.is-not-valid {
+  color: var(--color-red);
+  box-shadow: none;
+  font-weight: bold;
+}
+
+label.is-valid {
+  color: var(--color-main);
+  box-shadow: none;
+  font-weight: bold;
+}
+
+.action-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-direction: column;
+  width: 100%;
+}
+
 .form {
   display: grid;
   gap: 16px;
   width: 100%;
-  
+
   &__campo {
     display: grid;
     gap: 8px;
@@ -40,7 +248,7 @@
   font-size: 0.9em;
   transform: opacity .4s ease;
   font-family: arial;
-  
+
   &:hover {
     border: 2.3px solid var(--color-seablue);
   }
@@ -50,15 +258,16 @@
   }
 
   &:-webkit-autofill,
-  &:-webkit-autofill:hover, 
-  &:-webkit-autofill:focus, 
-  &:-webkit-autofill:active{
-      -webkit-box-shadow: 0 0 0 30px var(--color-neutral-700) inset !important;
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--color-neutral-700) inset !important;
   }
 }
 
 input[type="file"] {
   color: var(--color-neutral-500);
+
   // background: none !important;
   // border: none !important;
   // outline: none !important;
@@ -96,7 +305,7 @@ label {
   transition: background 0.4s ease;
   padding: 2.5px 4px;
   text-align: left;
-  
+
   &:hover {
     background-color: var(--color-neutral-800);
     border-radius: 4px;
@@ -106,6 +315,7 @@ label {
 *:disabled {
   opacity: 0.5;
   cursor: not-allowed !important;
+
   * {
     cursor: not-allowed !important;
   }
@@ -121,8 +331,32 @@ label {
     }
   }
 
-  
+
   label:hover {
     background-color: var(--color-neutral-000-soft);
+  }
+}
+
+
+
+@include mobile {
+  .form-container {
+    flex-direction: column;
+    margin-top: 8%;
+  }
+
+  .form-header,
+  .step-container {
+    width: 100%;
+    padding: 7%;
+  }
+
+  .step-container,
+  .step-wrapper {
+    min-height: 50vh;
+  }
+
+  .step-wrapper {
+    padding: 25% 0;
   }
 }
